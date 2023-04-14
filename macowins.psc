@@ -4,24 +4,30 @@
 
 class Prenda {
     const tipo
-    const precioGeneral
+    const precio
+    Estado estado
 
-    method precio()
+    method precio() = estado.precio(precio)
 }
 
-class Nueva inherits Prenda {
-    override method precio() = precioGeneral
+interface Estado {
+    method precio(precio)
 }
 
-class Descuento inherits Prenda {
+class Nueva implements Estado {
+     method precio(precio) = precio
+}
+
+class Descuento implements Estado {
     const descuentoAplicado
 
-    override method precio() = precioGeneral - descuentoAplicado
+    method precio(precio) = precio - descuentoAplicado
 }
 
-class Liquidacion inherits Prenda {
-    override method precio() = precioGeneral*0.5
+class Liquidacion implements Estado {
+    method precio(precio) = precio*0.5
 }
+
 
 // VENTAS
 
